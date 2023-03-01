@@ -9,8 +9,8 @@ const initialStateValue = [
     title: "make a calculator app ",
   },
 ];
-export const todolistSlice = createSlice({
-  name: "toDoList",
+const todolistSlice = createSlice({
+  name: "todos",
   initialState: initialStateValue,
   reducers: {
     add: (state, action) => {
@@ -26,7 +26,6 @@ export const todolistSlice = createSlice({
       return (state = []);
     },
     edit: (state, action) => {
-      console.log(action.payload);
       return (state = state.map((item) => {
         if (item.id === action.payload.id) {
           return {
@@ -41,5 +40,4 @@ export const todolistSlice = createSlice({
 });
 
 export const { add, remove, clear, edit } = todolistSlice.actions;
-
 export default todolistSlice.reducer;
