@@ -8,6 +8,7 @@ export default function App() {
   const toDoList = useSelector((state) => state.todosList);
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
+
   return (
     <div className="flex justify-center items-center font-bold text-2xl">
       <div className="w-2/5 text-center">
@@ -21,7 +22,7 @@ export default function App() {
             value={inputValue}
             onChange={(event) => setInputValue(event.target.value)}
             placeholder="add Todos"
-            className="w-full outline-none p"
+            className="w-full outline-none"
           />
           <button
             type="submit"
@@ -40,8 +41,8 @@ export default function App() {
             />
           </button>
         </form>
-        {toDoList?.length === 0 && <p className="text-2xl">No Todos</p>}
-        {toDoList?.map((item) => {
+        {toDoList.length === 0 && <p className="text-2xl">No Todos</p>}
+        {toDoList.map((item) => {
           return (
             <ListTodos
               key={item.id}
