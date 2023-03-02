@@ -1,32 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialStateValue = [
-  {
-    id: 1,
-    title: "make a todo app ",
-  },
-  {
-    id: 2,
-    title: "make a calculator app ",
-  },
-];
 const todolistSlice = createSlice({
   name: "todos",
-  initialState: initialStateValue,
+  initialState: [],
   reducers: {
     add: (state, action) => {
-      state = state.push({
+      state.push({
         id: state[state.length - 1]?.id + 1 || 1,
         title: action.payload.title,
       });
     },
     remove: (state, action) => {
-      return (state = state.filter((item) => item.id !== action.payload.id));
+      return state.filter((item) => item.id !== action.payload.id);
     },
-    clear: (state) => {
-      return (state = []);
-    },
+    clear: () => [],
     edit: (state, action) => {
-      return (state = state.map((item) => {
+      return state.map((item) => {
         if (item.id === action.payload.id) {
           return {
             ...item,
@@ -34,7 +22,7 @@ const todolistSlice = createSlice({
           };
         }
         return item;
-      }));
+      });
     },
   },
 });
