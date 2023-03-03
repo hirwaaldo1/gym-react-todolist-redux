@@ -1,33 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialStateValue = [
-  {
-    id: 1,
-    title: "make a todo app ",
-  },
-  {
-    id: 2,
-    title: "make a calculator app ",
-  },
-];
-export const todolistSlice = createSlice({
-  name: "toDoList",
-  initialState: initialStateValue,
+const todolistSlice = createSlice({
+  name: "todos",
+  initialState: [],
   reducers: {
     add: (state, action) => {
-      state = state.push({
+      state.push({
         id: state[state.length - 1]?.id + 1 || 1,
         title: action.payload.title,
       });
     },
     remove: (state, action) => {
-      return (state = state.filter((item) => item.id !== action.payload.id));
+      return state.filter((item) => item.id !== action.payload.id);
     },
-    clear: (state) => {
-      return (state = []);
-    },
+    clear: () => [],
     edit: (state, action) => {
-      console.log(action.payload);
-      return (state = state.map((item) => {
+      return state.map((item) => {
         if (item.id === action.payload.id) {
           return {
             ...item,
@@ -35,11 +22,10 @@ export const todolistSlice = createSlice({
           };
         }
         return item;
-      }));
+      });
     },
   },
 });
 
 export const { add, remove, clear, edit } = todolistSlice.actions;
-
 export default todolistSlice.reducer;
