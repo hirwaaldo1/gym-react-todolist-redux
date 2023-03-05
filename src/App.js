@@ -2,7 +2,7 @@ import { useState } from "react";
 import FeatherIcon from "feather-icons-react/build/FeatherIcon";
 import { useDispatch, useSelector } from "react-redux";
 import ListTodos from "./components/Todo";
-import { add, clear, remove } from "./features/todos";
+import { add, check, clear, remove } from "./features/todos";
 
 export default function App() {
   const toDoList = useSelector((state) => state.todosList);
@@ -48,6 +48,7 @@ export default function App() {
               key={item.id}
               {...item}
               deleteTodo={() => dispatch(remove({ id: item.id }))}
+              checkTodo={() => dispatch(check({ id: item.id }))}
             />
           );
         })}

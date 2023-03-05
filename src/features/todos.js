@@ -7,6 +7,7 @@ const todolistSlice = createSlice({
       state.push({
         id: state[state.length - 1]?.id + 1 || 1,
         title: action.payload.title,
+        checked: false,
       });
     },
     remove: (state, action) => {
@@ -24,8 +25,19 @@ const todolistSlice = createSlice({
         return item;
       });
     },
+    check: (state, action) => {
+      return state.map((item) => {
+        if (item.id === action.payload.id) {
+          return {
+            ...item,
+            checked: !item.checked,
+          };
+        }
+        return item;
+      });
+    },
   },
 });
 
-export const { add, remove, clear, edit } = todolistSlice.actions;
+export const { add, remove, clear, edit, check } = todolistSlice.actions;
 export default todolistSlice.reducer;

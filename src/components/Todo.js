@@ -2,8 +2,13 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { edit } from "../features/todos";
 import FeatherIcon from "feather-icons-react";
-export default function ListTodos({ title, id, deleteTodo }) {
-  const [isCheck, setIsCheck] = useState(false);
+export default function ListTodos({
+  title,
+  id,
+  deleteTodo,
+  checkTodo,
+  checked,
+}) {
   const [isEdit, setIsEdit] = useState(false);
   const [editValue, setEditValue] = useState(title);
   const dispatch = useDispatch();
@@ -28,8 +33,8 @@ export default function ListTodos({ title, id, deleteTodo }) {
         </div>
       ) : (
         <div className="flex gap-10 items-center">
-          <input type="checkbox" onClick={() => setIsCheck(!isCheck)} />
-          {isCheck ? <p className="line-through">{title}</p> : <p>{title}</p>}
+          <input type="checkbox" onClick={() => checkTodo(id)} />
+          <p className={checked && "line-through"}>{title}</p>
         </div>
       )}
       <div className="flex gap-2">
